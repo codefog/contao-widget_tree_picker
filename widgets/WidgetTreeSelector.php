@@ -382,14 +382,12 @@ class WidgetTreeSelector extends \Widget
 
         $return .= "\n    " . '<li class="tl_file" onmouseover="Theme.hoverDiv(this, 1)" onmouseout="Theme.hoverDiv(this, 0)" onclick="Theme.toggleSelect(this)"><div class="tl_left" style="padding-left:'.($intMargin + $intSpacing).'px">';
 
-        $folderAttribute = 'style="margin-left:20px"';
         $session[$node][$id] = is_numeric($session[$node][$id]) ? $session[$node][$id] : 0;
         $level = ($intMargin / $intSpacing + 1);
         $blnIsOpen = ($session[$node][$id] == 1 || in_array($id, $this->arrNodes));
 
         if (!empty($childs))
         {
-            $folderAttribute = '';
             $img = $blnIsOpen ? 'folMinus.gif' : 'folPlus.gif';
             $alt = $blnIsOpen ? $GLOBALS['TL_LANG']['MSC']['collapseNode'] : $GLOBALS['TL_LANG']['MSC']['expandNode'];
             $return .= '<a href="'.$this->addToUrl($flag.'tg='.$id).'" title="'.specialchars($alt).'" onclick="return TreePicker.toggle(this,\''.$xtnode.'_'.$id.'\',\''.$this->strField.'\',\''.$this->strName.'\','.$level.')">'.\Image::getHtml($img, '', 'style="margin-right:2px"').'</a>';
@@ -404,7 +402,7 @@ class WidgetTreeSelector extends \Widget
         }
         else
         {
-            $return .= $label . '</div> <div class="tl_right">';
+            $return .= '<span style="margin-left:'.$intSpacing.'px;"></span>' . $label . '</div> <div class="tl_right">';
         }
 
         // Add checkbox or radio button
