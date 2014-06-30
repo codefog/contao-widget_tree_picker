@@ -16,7 +16,7 @@
  * Extension version
  */
 @define('WIDGET_TREE_PICKER_VERSION', '1.0');
-@define('WIDGET_TREE_PICKER_BUILD', '0');
+@define('WIDGET_TREE_PICKER_BUILD', '1');
 
 
 /**

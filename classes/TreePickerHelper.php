@@ -107,7 +107,7 @@ class TreePickerHelper extends \Backend
         }
         else
         {
-            $label = \Image::getHtml('iconPLAIN.gif', '') . ' ' . ($blnSimple ? $args['titleField'] : $label);
+            $label = \Image::getHtml('iconPLAIN.gif') . ' ' . ($blnSimple ? $args['titleField'] : $label);
         }
 
         return $label;
