@@ -133,11 +133,11 @@ class WidgetTreePicker extends \Widget
         }
         elseif (strpos($varInput, ',') === false)
         {
-            return $this->blnIsMultiple ? array(intval($varInput)) : intval($varInput);
+            return $this->blnIsMultiple ? array($varInput) : $varInput;
         }
         else
         {
-            $arrValue = array_map('intval', array_filter(explode(',', $varInput)));
+            $arrValue = array_filter(explode(',', $varInput));
             return $this->blnIsMultiple ? $arrValue : $arrValue[0];
         }
     }
