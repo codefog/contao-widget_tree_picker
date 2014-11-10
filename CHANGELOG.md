@@ -1,6 +1,13 @@
 widget_tree_picker Contao Extension
 ===================================
 
+Version 1.0.3 stable (2014-11-10)
+---------------------------------
+
+### Fixed
+- Fixed the widget not working in a subpalette
+
+
 Version 1.0.2 stable (2014-09-01)
 ---------------------------------
 
