@@ -1,6 +1,13 @@
 widget_tree_picker Contao Extension
 ===================================
 
+Version 1.0.5 stable (2015-01-??)
+---------------------------------
+
+### Improved
+- Added the German language files (thanks to Didier Federer)
+
+
 Version 1.0.4 stable (2014-12-18)
 ---------------------------------
 
