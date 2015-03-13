@@ -1,6 +1,17 @@
 widget_tree_picker Contao Extension
 ===================================
 
+Version 1.0.6 stable (2015-03-13)
+---------------------------------
+
+### Fixed
+- Fixed the value not being displayed if it was not an array
+
+### Improved
+- Added the .gitignore file
+- Added the minified version of JavaScript file
+
+
 Version 1.0.5 stable (2015-01-20)
 ---------------------------------
 
