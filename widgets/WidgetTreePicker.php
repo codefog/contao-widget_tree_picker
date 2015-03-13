@@ -150,9 +150,9 @@ class WidgetTreePicker extends \Widget
         $arrValues = array();
         $blnHasOrder = ($this->strOrderField != '' && is_array($this->{$this->strOrderField}));
 
-        if (is_array($this->varValue) && !empty($this->varValue))
+        if (!empty($this->varValue))
         {
-            $objItems = $this->Database->execute("SELECT * FROM " . $this->foreignTable . " WHERE id IN (" . implode(',', array_map('intval', $this->varValue)) . ") ORDER BY sorting");
+            $objItems = $this->Database->execute("SELECT * FROM " . $this->foreignTable . " WHERE id IN (" . implode(',', array_map('intval', (array) $this->varValue)) . ") ORDER BY sorting");
 
             if ($objItems !== null)
             {
@@ -209,7 +209,7 @@ class WidgetTreePicker extends \Widget
     <script>Backend.makeMultiSrcSortable("sort_'.$this->strId.'", "ctrl_'.$this->strOrderId.'")</script>' : '') . '
     <script>
         var script = document.createElement("script");
-        script.src = "system/modules/widget_tree_picker/assets/treepicker.js";
+        script.src = "system/modules/widget_tree_picker/assets/treepicker.min.js";
         document.getElementsByTagName("head")[0].appendChild(script);
     </script>
   </div>';
