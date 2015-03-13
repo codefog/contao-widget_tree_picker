@@ -209,7 +209,7 @@ class WidgetTreePicker extends \Widget
     <script>Backend.makeMultiSrcSortable("sort_'.$this->strId.'", "ctrl_'.$this->strOrderId.'")</script>' : '') . '
     <script>
         var script = document.createElement("script");
-        script.src = "system/modules/widget_tree_picker/assets/treepicker.js";
+        script.src = "system/modules/widget_tree_picker/assets/treepicker.min.js";
         document.getElementsByTagName("head")[0].appendChild(script);
     </script>
   </div>';

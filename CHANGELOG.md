@@ -9,6 +9,7 @@ Version 1.0.6 stable (2015-03-??)
 
 ### Improved
 - Added the .gitignore file
+- Added the minified version of JavaScript file
 
 
 Version 1.0.5 stable (2015-01-20)
