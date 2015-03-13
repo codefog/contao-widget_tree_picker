@@ -150,9 +150,9 @@ class WidgetTreePicker extends \Widget
         $arrValues = array();
         $blnHasOrder = ($this->strOrderField != '' && is_array($this->{$this->strOrderField}));
 
-        if (is_array($this->varValue) && !empty($this->varValue))
+        if (!empty($this->varValue))
         {
-            $objItems = $this->Database->execute("SELECT * FROM " . $this->foreignTable . " WHERE id IN (" . implode(',', array_map('intval', $this->varValue)) . ") ORDER BY sorting");
+            $objItems = $this->Database->execute("SELECT * FROM " . $this->foreignTable . " WHERE id IN (" . implode(',', array_map('intval', (array) $this->varValue)) . ") ORDER BY sorting");
 
             if ($objItems !== null)
             {
