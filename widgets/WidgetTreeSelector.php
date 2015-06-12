@@ -405,17 +405,39 @@ class WidgetTreeSelector extends \Widget
             $return .= '<span style="margin-left:'.$intSpacing.'px;"></span>' . $label . '</div> <div class="tl_right">';
         }
 
-        // Add checkbox or radio button
-        switch ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['fieldType'])
+        $showInput = true;
+        // HOOK: toggle input visibility
+        if (isset($GLOBALS['TL_HOOKS']['widgetTreePickerToggleInput']) && is_array($GLOBALS['TL_HOOKS']['widgetTreePickerToggleInput']))
         {
-            case 'checkbox':
-                $return .= '<input type="checkbox" name="'.$this->strName.'[]" id="'.$this->strName.'_'.$id.'" class="tl_tree_checkbox" value="'.specialchars($id).'" onfocus="Backend.getScrollOffset()"'.static::optionChecked($id, $this->varValue).'>';
-                break;
+            foreach ($GLOBALS['TL_HOOKS']['widgetTreePickerToggleInput'] as $callback)
+            {
+                $this->import($callback[0]);
+                $showInput = $this->$callback[0]->$callback[1]($objItem, $this);
+            }
+        }
 
-            default:
-            case 'radio':
-                $return .= '<input type="radio" name="'.$this->strName.'" id="'.$this->strName.'_'.$id.'" class="tl_tree_radio" value="'.specialchars($id).'" onfocus="Backend.getScrollOffset()"'.static::optionChecked($id, $this->varValue).'>';
-                break;
+        if($showInput) {
+            $input = "";
+            // Add checkbox or radio button
+            switch ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['fieldType']) {
+                case 'checkbox':
+                    $input .= '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . static::optionChecked($id, $this->varValue) . '>';
+                    break;
+
+                default:
+                case 'radio':
+                    $input .= '<input type="radio" name="' . $this->strName . '" id="' . $this->strName . '_' . $id . '" class="tl_tree_radio" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . static::optionChecked($id, $this->varValue) . '>';
+                    break;
+            }
+
+            // HOOK: modify input markup
+            if (isset($GLOBALS['TL_HOOKS']['widgetTreePickerModifyInput']) && is_array($GLOBALS['TL_HOOKS']['widgetTreePickerModifyInput'])) {
+                foreach ($GLOBALS['TL_HOOKS']['widgetTreePickerModifyInput'] as $callback) {
+                    $this->import($callback[0]);
+                    $input = $this->$callback[0]->$callback[1]($input, $objItem, $this);
+                }
+            }
+            $return .= $input;
         }
 
         $return .= '</div><div style="clear:both"></div></li>';
