@@ -23,8 +23,17 @@ define('TL_SCRIPT', 'system/modules/widget_tree_picker/public/treePicker.php');
  * Initialize the system
  */
 define('TL_MODE', 'BE');
-require_once '../../../initialize.php';
 
+// Include the Contao initialization script (see #9)
+if (file_exists('../../../initialize.php')) {
+    // Regular way
+    /** @noinspection PhpIncludeInspection */
+    require_once '../../../initialize.php';
+} else {
+    // Try composer location
+    /** @noinspection PhpIncludeInspection */
+    require_once '../../../../../../../../system/initialize.php';
+}
 
 /**
  * Class TreePicker
