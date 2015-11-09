@@ -32,7 +32,7 @@ if (file_exists('../../../initialize.php')) {
 } else {
     // Try composer location
     /** @noinspection PhpIncludeInspection */
-    require_once '../../../../../../../../system/initialize.php';
+    require_once '../../../../../system/initialize.php';
 }
 
 /**
