@@ -6,6 +6,7 @@ Version 2.0.2 stable (2015-08-??)
 
 ### Fixed
 - Fixed the wrong initialize.php path on composer installation (#9)
+- Fixed the generate label method
 
 
 Version 2.0.1 stable (2015-06-10)
