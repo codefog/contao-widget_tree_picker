@@ -57,7 +57,7 @@ class TreePickerHelper extends \Backend
                 list($strKey, $strTable) = explode(':', $v);
                 list($strTable, $strField) = explode('.', $strTable);
 
-                $objRef = $this->Database->prepare("SELECT " . $strField . " FROM " . $strTable . " WHERE id=?")
+                $objRef = \Database::getInstance()->prepare("SELECT " . $strField . " FROM " . $strTable . " WHERE id=?")
                                          ->limit(1)
                                          ->execute($objItem->$strKey);
 
