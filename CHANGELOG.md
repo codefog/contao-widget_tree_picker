@@ -1,6 +1,17 @@
 widget_tree_picker Contao Extension
 ===================================
 
+Version 2.2.0 stable (2016-02-15)
+---------------------------------
+
+### Fixed
+- Do not display manager link in every popup (see #11)
+
+### Improved
+- Added the ```selectParents``` option for checkboxes selector
+- Updated the composer.json dependencies for Contao 4
+
+
 Version 2.1.0 stable (2015-12-21)
 ---------------------------------
 

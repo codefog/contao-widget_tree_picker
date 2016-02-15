@@ -58,7 +58,7 @@ class WidgetTreeSelector extends \Widget
         \System::loadLanguageFile($this->foreignTable);
 
         // Add the scripts
-        $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/widget_tree_picker/assets/treepicker.js';
+        $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/widget_tree_picker/assets/treepicker.min.js';
     }
 
 
@@ -419,7 +419,7 @@ class WidgetTreeSelector extends \Widget
             // Add checkbox or radio button
             switch ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['fieldType']) {
                 case 'checkbox':
-                    $input = '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . static::optionChecked($id, $this->varValue) . '>';
+                    $input = '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['selectParents'] ? ' onclick="TreePicker.selectParents(this)"' : '') . static::optionChecked($id, $this->varValue) . '>';
                     break;
 
                 default:

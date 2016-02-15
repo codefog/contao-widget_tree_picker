@@ -120,7 +120,7 @@ class TreePickerHelper extends \Backend
      */
     public function parseTemplate($objTemplate)
     {
-        if (\Input::get('popup') && $objTemplate->getName() == 'be_main' && \Input::get('do') != 'page' && \Input::get('do') != 'files' && $this->Session->get('treePickerRef'))
+        if (\Input::get('popup') && $objTemplate->getName() == 'be_main' && \Input::get('wtp') && $this->Session->get('treePickerRef'))
         {
             $objTemplate->managerHref = $this->Session->get('treePickerRef');
             $objTemplate->manager = $GLOBALS['TL_LANG']['MSC']['treePickerHome'];
