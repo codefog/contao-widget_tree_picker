@@ -121,7 +121,7 @@ class TreePicker extends \Backend
         // Add the manager link
         if ($objTreeSelector->managerHref)
         {
-            $this->Template->managerHref = 'contao/main.php?' . ampersand($objTreeSelector->managerHref) . '&amp;popup=1';
+            $this->Template->managerHref = 'contao/main.php?' . ampersand($objTreeSelector->managerHref) . '&amp;popup=1&amp;wtp=1';
         }
 
         $GLOBALS['TL_CONFIG']['debugMode'] = false;
