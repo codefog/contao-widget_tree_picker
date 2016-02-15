@@ -12,6 +12,30 @@
 var TreePicker = {
 
     /**
+     * Select parent checkboxes
+     *
+     * @param {object} el The DOM element
+     */
+    selectParents: function (el) {
+        if (el.checked === false) {
+            return;
+        }
+
+        function select(checkbox) {
+            var parentCheckbox = checkbox.getParent('ul').getParent().getPrevious('li').getElement('input[type="checkbox"]');
+
+            if (parentCheckbox === null) {
+                return; // break the loop
+            }
+
+            parentCheckbox.checked = true;
+            select(parentCheckbox);
+        }
+
+        select(el);
+    },
+
+    /**
      * Toggle the input field
      *
      * @param {object} el    The DOM element

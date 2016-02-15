@@ -1,6 +1,13 @@
 widget_tree_picker Contao Extension
 ===================================
 
+Version 2.2.0 stable (????-??-??)
+---------------------------------
+
+### Improved
+- Added the ```selectParents``` option for checkboxes selector
+
+
 Version 2.1.0 stable (2015-12-21)
 ---------------------------------
 
