@@ -188,6 +188,21 @@ class WidgetTreePicker extends \Widget
                 $arrValues = $arrNew;
                 unset($arrNew);
             }
+
+            $orderCallback = $this->orderCallback;
+
+            // Use callback to order things
+            if (is_array($orderCallback))
+            {
+                $strClass = $orderCallback[0];
+                $strMethod = $orderCallback[1];
+
+                $arrValues = \System::importStatic($strClass)->$strMethod($arrValues);
+            }
+            elseif (is_callable($orderCallback))
+            {
+                $arrValues = $orderCallback($arrValues);
+            }
         }
 
         // Load the fonts for the drag hint

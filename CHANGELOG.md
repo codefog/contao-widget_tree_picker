@@ -1,6 +1,13 @@
 widget_tree_picker Contao Extension
 ===================================
 
+Version 2.3.0 stable (????-??-??)
+---------------------------------
+
+### Improved
+- Added the ```orderCallback``` option for sorting the widget records
+
+
 Version 2.2.0 stable (2016-02-15)
 ---------------------------------
 
