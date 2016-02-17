@@ -302,6 +302,22 @@ class WidgetTreeSelector extends \Widget
             }
         }
 
+        // Call load_callback
+        if (is_array($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['load_callback']))
+        {
+            foreach ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['load_callback'] as $callback)
+            {
+                if (is_array($callback))
+                {
+                    $this->varValue = \System::importStatic($callback[0])->$callback[1]($this->varValue, $this->objDca);
+                }
+                elseif (is_callable($callback))
+                {
+                    $this->varValue = $callback($this->varValue, $this->objDca);
+                }
+            }
+        }
+
         $this->getPathNodes();
 
         // Load the requested nodes
