@@ -302,13 +302,20 @@ class WidgetTreeSelector extends \Widget
             }
         }
 
-        $objField = $this->Database->prepare("SELECT " . $this->strField . " FROM " . $this->strTable . " WHERE id=?")
-                                   ->limit(1)
-                                   ->execute($this->strId);
-
-        if ($objField->numRows)
+        // Call load_callback
+        if (is_array($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['load_callback']))
         {
-            $this->varValue = deserialize($objField->{$this->strField});
+            foreach ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['load_callback'] as $callback)
+            {
+                if (is_array($callback))
+                {
+                    $this->varValue = \System::importStatic($callback[0])->$callback[1]($this->varValue, $this->objDca);
+                }
+                elseif (is_callable($callback))
+                {
+                    $this->varValue = $callback($this->varValue, $this->objDca);
+                }
+            }
         }
 
         $this->getPathNodes();

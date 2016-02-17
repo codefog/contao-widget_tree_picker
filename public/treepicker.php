@@ -16,7 +16,7 @@ namespace TreePicker;
 /**
  * Set the script name
  */
-define('TL_SCRIPT', 'system/modules/widget_tree_picker/public/treePicker.php');
+define('TL_SCRIPT', 'system/modules/widget_tree_picker/public/treepicker.php');
 
 
 /**
@@ -29,8 +29,12 @@ if (file_exists('../../../initialize.php')) {
     // Regular way
     /** @noinspection PhpIncludeInspection */
     require_once '../../../initialize.php';
+} elseif (file_exists('../../../../system/initialize.php')) {
+    // Contao 4 - Try composer location
+    /** @noinspection PhpIncludeInspection */
+    require_once '../../../../system/initialize.php';
 } else {
-    // Try composer location
+    // Contao 3 - Try composer location
     /** @noinspection PhpIncludeInspection */
     require_once '../../../../../system/initialize.php';
 }
