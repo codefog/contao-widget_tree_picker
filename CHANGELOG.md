@@ -7,6 +7,9 @@ Version 2.3.0 stable (????-??-??)
 ### Improved
 - Added the ```orderCallback``` option for sorting the widget records
 
+### Fixed
+- Do not throw an error in AJAX request if field does not exist (e.g. data is managed in relational table)
+
 
 Version 2.2.0 stable (2016-02-15)
 ---------------------------------

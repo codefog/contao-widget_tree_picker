@@ -302,15 +302,6 @@ class WidgetTreeSelector extends \Widget
             }
         }
 
-        $objField = $this->Database->prepare("SELECT " . $this->strField . " FROM " . $this->strTable . " WHERE id=?")
-                                   ->limit(1)
-                                   ->execute($this->strId);
-
-        if ($objField->numRows)
-        {
-            $this->varValue = deserialize($objField->{$this->strField});
-        }
-
         $this->getPathNodes();
 
         // Load the requested nodes
