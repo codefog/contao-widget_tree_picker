@@ -6,6 +6,7 @@ Version 2.3.0 stable (????-??-??)
 
 ### Improved
 - Added the ```orderCallback``` option for sorting the widget records
+- Extension is now fully compatible with Contao 4
 
 ### Fixed
 - Do not throw an error in AJAX request if field does not exist (e.g. data is managed in relational table)
