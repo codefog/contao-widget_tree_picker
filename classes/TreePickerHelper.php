@@ -234,7 +234,7 @@ class TreePickerHelper extends \Backend
                         if (is_array($callback))
                         {
                             $this->import($callback[0]);
-                            $varValue = $this->$callback[0]->$callback[1]($varValue, $dc);
+                            $varValue = $this->{$callback[0]}->{$callback[1]}($varValue, $dc);
                         }
                         elseif (is_callable($callback))
                         {
