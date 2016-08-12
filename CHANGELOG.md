@@ -1,7 +1,7 @@
 widget_tree_picker Contao Extension
 ===================================
 
-Version 2.3.1 stable (????-??-??)
+Version 2.3.1 stable (2016-28-12)
 ---------------------------------
 
 ### Improved
