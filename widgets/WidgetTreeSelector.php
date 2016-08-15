@@ -309,7 +309,7 @@ class WidgetTreeSelector extends \Widget
             {
                 if (is_array($callback))
                 {
-                    $this->varValue = \System::importStatic($callback[0])->$callback[1]($this->varValue, $this->objDca);
+                    $this->varValue = \System::importStatic($callback[0])->{$callback[1]}($this->varValue, $this->objDca);
                 }
                 elseif (is_callable($callback))
                 {
@@ -418,7 +418,7 @@ class WidgetTreeSelector extends \Widget
         if (isset($GLOBALS['TL_HOOKS']['widgetTreePickerToggleInput']) && is_array($GLOBALS['TL_HOOKS']['widgetTreePickerToggleInput'])) {
             foreach ($GLOBALS['TL_HOOKS']['widgetTreePickerToggleInput'] as $callback) {
                 $this->import($callback[0]);
-                $showInput = $this->$callback[0]->$callback[1]($objItem, $this);
+                $showInput = $this->{$callback[0]}->{$callback[1]}($objItem, $this);
             }
         }
 
@@ -439,7 +439,7 @@ class WidgetTreeSelector extends \Widget
             if (isset($GLOBALS['TL_HOOKS']['widgetTreePickerModifyInput']) && is_array($GLOBALS['TL_HOOKS']['widgetTreePickerModifyInput'])) {
                 foreach ($GLOBALS['TL_HOOKS']['widgetTreePickerModifyInput'] as $callback) {
                     $this->import($callback[0]);
-                    $input = $this->$callback[0]->$callback[1]($input, $objItem, $this);
+                    $input = $this->{$callback[0]}->{$callback[1]}($input, $objItem, $this);
                 }
             }
 
