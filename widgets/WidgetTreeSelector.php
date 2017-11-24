@@ -426,12 +426,12 @@ class WidgetTreeSelector extends \Widget
             // Add checkbox or radio button
             switch ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['fieldType']) {
                 case 'checkbox':
-                    $input = '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['selectParents'] ? ' onclick="TreePicker.selectParents(this)"' : '') . static::optionChecked($id, $this->varValue) . '>';
+                    $input = '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['selectParents'] ? ' onclick="TreePicker.selectParents(this)"' : '') . static::optionChecked($id, $this->varValue) . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['parentsUnselectable'] && $this->hasChildren($objItem) ? ' disabled="disabled"' : '') . '>';
                     break;
 
                 default:
                 case 'radio':
-                    $input = '<input type="radio" name="' . $this->strName . '" id="' . $this->strName . '_' . $id . '" class="tl_tree_radio" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . static::optionChecked($id, $this->varValue) . '>';
+                    $input = '<input type="radio" name="' . $this->strName . '" id="' . $this->strName . '_' . $id . '" class="tl_tree_radio" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . static::optionChecked($id, $this->varValue) . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['parentsUnselectable'] && $this->hasChildren($objItem) ? ' disabled="disabled"' : '') . '>';
                     break;
             }
 
@@ -462,6 +462,18 @@ class WidgetTreeSelector extends \Widget
         }
 
         return $return;
+    }
+
+    /**
+     * Determines whether an item has children items
+     * @param $objItem
+     * @return bool
+     */
+    protected function hasChildren($objItem)
+    {
+        $objChildren = $this->Database->prepare("SELECT id FROM $this->foreignTable WHERE pid=?")->execute($objItem->id);
+
+        return (int) $objChildren->numRows > 0;
     }
 
 
