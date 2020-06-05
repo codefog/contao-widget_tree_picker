@@ -56,9 +56,6 @@ class WidgetTreeSelector extends \Widget
 
         $this->loadDataContainer($this->foreignTable);
         \System::loadLanguageFile($this->foreignTable);
-
-        // Add the scripts
-        $GLOBALS['TL_JAVASCRIPT'][] = 'system/modules/widget_tree_picker/assets/treepicker.min.js';
     }
 
 
@@ -268,7 +265,7 @@ class WidgetTreeSelector extends \Widget
         // Return the tree
         return '<ul class="tl_listing tree_view picker_selector'.(($this->strClass != '') ? ' ' . $this->strClass : '').'" id="'.$this->strId.'">
     <li class="tl_folder_top"><div class="tl_left">'.\Image::getHtml($GLOBALS['TL_DCA'][$this->foreignTable]['list']['sorting']['icon'] ?: 'iconPLAIN.gif').' '.($GLOBALS['TL_DCA'][$this->foreignTable]['config']['label'] ?: $GLOBALS['TL_CONFIG']['websiteTitle']).'</div> <div class="tl_right">&nbsp;</div><div style="clear:both"></div></li><li class="parent" id="'.$this->strId.'_parent"><ul>'.$tree.$strReset.'
-  </ul></li></ul>';
+  </ul></li></ul><script src="system/modules/widget_tree_picker/assets/treepicker.min.js"></script>';
     }
 
 
