@@ -129,7 +129,9 @@ class TreePicker extends \Backend
         }
 
         $GLOBALS['TL_CONFIG']['debugMode'] = false;
-        $this->Template->output();
+
+        echo $this->Template->parse();
+        exit;
     }
 }
 
