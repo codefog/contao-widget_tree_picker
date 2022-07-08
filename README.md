@@ -1,3 +1,9 @@
+# THIS EXTENSION IS DEPRECATED
+
+You should use the Picker features of Contao core instead.
+
+---
+
 # Widget Tree Picker extension for Contao Open Source CMS
 
 ![](https://img.shields.io/packagist/v/codefog/contao-widget_tree_picker.svg)
