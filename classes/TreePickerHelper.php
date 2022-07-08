@@ -47,7 +47,7 @@ class TreePickerHelper extends \Backend
         foreach ($showFields as $k=>$v)
         {
             // Decrypt the value
-            if ($GLOBALS['TL_DCA'][$strForeignTable]['fields'][$v]['eval']['encrypt'])
+            if ($GLOBALS['TL_DCA'][$strForeignTable]['fields'][$v]['eval']['encrypt'] ?? false)
             {
                 $objItem->$v = \Encryption::decrypt(deserialize($objItem->$v));
             }
@@ -63,7 +63,7 @@ class TreePickerHelper extends \Backend
 
                 $args[$k] = $objRef->numRows ? $objRef->$strField : '';
             }
-            elseif (in_array($GLOBALS['TL_DCA'][$strForeignTable]['fields'][$v]['flag'], array(5, 6, 7, 8, 9, 10)))
+            elseif (in_array($GLOBALS['TL_DCA'][$strForeignTable]['fields'][$v]['flag'] ?? null, array(5, 6, 7, 8, 9, 10)))
             {
                 $args[$k] = \Date::parse($GLOBALS['TL_CONFIG']['datimFormat'], $objItem->$v);
             }
@@ -73,14 +73,14 @@ class TreePickerHelper extends \Backend
             }
             else
             {
-                $args[$k] = $GLOBALS['TL_DCA'][$strForeignTable]['fields'][$v]['reference'][$objItem->$v] ?: $objItem->$v;
+                $args[$k] = $GLOBALS['TL_DCA'][$strForeignTable]['fields'][$v]['reference'][$objItem->$v] ?? $objItem->$v;
             }
         }
 
         $label = vsprintf(((strlen($GLOBALS['TL_DCA'][$strForeignTable]['list']['label']['format'])) ? $GLOBALS['TL_DCA'][$strForeignTable]['list']['label']['format'] : '%s'), $args);
 
         // Shorten the label if it is too long
-        if ($GLOBALS['TL_DCA'][$strForeignTable]['list']['label']['maxCharacters'] > 0 && $GLOBALS['TL_DCA'][$strForeignTable]['list']['label']['maxCharacters'] < utf8_strlen(strip_tags($label)))
+        if (($GLOBALS['TL_DCA'][$strForeignTable]['list']['label']['maxCharacters'] ?? 0) > 0 && $GLOBALS['TL_DCA'][$strForeignTable]['list']['label']['maxCharacters'] < utf8_strlen(strip_tags($label)))
         {
             // PHP 7 compatibility
             if (version_compare(VERSION . '.' . BUILD, '3.5.1', '>='))

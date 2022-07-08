@@ -230,7 +230,7 @@ class WidgetTreeSelector extends \Widget
             }
 
             // Predefined node set
-            elseif (is_array($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['rootNodes']))
+            elseif (is_array($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['rootNodes'] ?? null))
             {
                 foreach ($this->eliminateNestedPages($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['rootNodes'], $this->foreignTable) as $node)
                 {
@@ -386,7 +386,7 @@ class WidgetTreeSelector extends \Widget
 
         $return .= "\n    " . '<li class="tl_file toggle_select" onmouseover="Theme.hoverDiv(this, 1)" onmouseout="Theme.hoverDiv(this, 0)"><div class="tl_left" style="padding-left:'.($intMargin + $intSpacing).'px">';
 
-        $session[$node][$id] = is_numeric($session[$node][$id]) ? $session[$node][$id] : 0;
+        $session[$node][$id] = (is_numeric($session[$node][$id]) ?? null) ? $session[$node][$id] : 0;
         $level = ($intMargin / $intSpacing + 1);
         $blnIsOpen = ($session[$node][$id] == 1 || in_array($id, $this->arrNodes));
 
@@ -423,7 +423,7 @@ class WidgetTreeSelector extends \Widget
             // Add checkbox or radio button
             switch ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['fieldType']) {
                 case 'checkbox':
-                    $input = '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['selectParents'] ? ' onclick="TreePicker.selectParents(this)"' : '') . static::optionChecked($id, $this->varValue) . ($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['parentsUnselectable'] && $this->hasChildren($objItem) ? ' disabled="disabled"' : '') . '>';
+                    $input = '<input type="checkbox" name="' . $this->strName . '[]" id="' . $this->strName . '_' . $id . '" class="tl_tree_checkbox" value="' . specialchars($id) . '" onfocus="Backend.getScrollOffset()"' . (($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['selectParents'] ?? false) ? ' onclick="TreePicker.selectParents(this)"' : '') . static::optionChecked($id, $this->varValue) . (($GLOBALS['TL_DCA'][$this->strTable]['fields'][$this->strField]['eval']['parentsUnselectable'] ?? false) && $this->hasChildren($objItem) ? ' disabled="disabled"' : '') . '>';
                     break;
 
                 default:

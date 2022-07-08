@@ -119,7 +119,7 @@ class TreePicker extends \Backend
         $this->Template->action = ampersand(\Environment::get('request'));
         $this->Template->value = $this->Session->get($objTreeSelector->getSearchSessionKey());
         $this->Template->manager = $GLOBALS['TL_LANG']['MSC']['treepickerManager'];
-        $this->Template->breadcrumb = $GLOBALS['TL_DCA'][$objTreeSelector->foreignTable]['list']['sorting']['breadcrumb'];
+        $this->Template->breadcrumb = $GLOBALS['TL_DCA'][$objTreeSelector->foreignTable]['list']['sorting']['breadcrumb'] ?? null;
         $this->Template->managerHref = '';
 
         // Add the manager link
